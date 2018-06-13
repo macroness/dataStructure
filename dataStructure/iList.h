@@ -26,6 +26,19 @@ public:
         // TODO: = 오퍼레이터 정의
     }
 
+    void push_back(valueType val) {
+        Node<valueType> *pNew = new Node<valueType>();
+        pNew->data = val;
+        
+        pNew->next = m_pFirst;
+        pNew->prev = m_pFirst->prev;
+        m_pFirst->prev->next = pNew;
+        m_pFirst->prev = pNew;
+    }
+
+    // TODO : push_front()
+    // TODO : pop_front()
+
     valueType pop_back() {
         valueType val = m_pFirst->prev->data;
         del(m_pFirst->prev);

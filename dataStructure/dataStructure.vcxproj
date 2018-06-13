@@ -115,10 +115,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="linkedList.cpp" />
+    <ClCompile Include="iList.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="linkedList.h" />
+    <ClInclude Include="iList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
