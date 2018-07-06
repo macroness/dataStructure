@@ -1,10 +1,15 @@
 #include "iList.h"
 #include <iostream>
 
+using namespace std;
+
 namespace istd {
 
 iList::iList(int size, int initValue) {
 	// TODO: size에 맞춰서 initValue 값으로 List 초기화
+	for (int i = 0; i < size; ++i) {
+		push_back(initValue);
+	}
 }
 
 iList::~iList() {
@@ -48,6 +53,14 @@ void iList::push_back(int val) {
 	m_numOfSize++;
 }
 
+int& iList::front() {
+	return m_pFirst->data;
+}
+
+int& iList::back() {
+	return m_pFirst->prev->data;
+}
+
 // TODO : push_front()
 // TODO : pop_front()
 
@@ -80,19 +93,9 @@ bool iList::empty() {
 
 } // namespace istd
 
-
 void print_list(istd::iList *pList) {
 	while (!pList->empty()) {
 		std::cout << pList->pop_back() << "\n";
-	}
-}
-
-void init_list(istd::iList *pList, const int n) {
-	for (int i = 0; i < n; ++i) {
-		pList->push_back(i);
-	}
-	for (int i = 0; i < n; ++i) {
-		pList->push_back(i);
 	}
 }
 
@@ -100,17 +103,6 @@ int main() {
 	
 	istd::iList l;
 
-	init_list(&l, 5);
-
-	l.remove(3);
-
-	print_list(&l);
-
-	init_list(&l, 10);
-
-	print_list(&l);
-
-	
 
 	return 0;
 }
