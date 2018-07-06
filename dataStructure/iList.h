@@ -29,14 +29,23 @@ public:
 
 	~iList();
 
+	// TODO : push_front()
 	/*
 	 * 맨 뒤 삽입
 	 */
 	void push_back(int val);
 
-	// TODO : push_front()
-	// TODO : pop_front()
+	/*
+	 * 맨 앞 data reference 반환 (빈 list일 경우 정의되지 않은 동작이 일어남)
+	 */
+	int& front();
 
+	/*
+	* 맨 뒤 data reference 반환 (빈 list일 경우 정의되지 않은 동작이 일어남)
+	*/
+	int& back();
+
+	// TODO : pop_front()
 	/*
 	 * 맨 뒤 가져오기
 	 */
