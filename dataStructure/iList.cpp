@@ -6,13 +6,16 @@ using namespace std;
 namespace istd {
 
 iList::iList(int size, int initValue) {
-	// TODO: size에 맞춰서 initValue 값으로 List 초기화
 	for (int i = 0; i < size; ++i) {
-		push_back(initValue);
+		push_back(i);
+		push_back(i);
 	}
 }
 
 iList::~iList() {
+	while(m_pFirst) {
+		del(m_pFirst);
+	}
 };
 
 void iList::del(Node *pNode) {
@@ -30,8 +33,17 @@ void iList::del(Node *pNode) {
 
 	pNode->prev->next = pNode->next;
 	pNode->next->prev = pNode->prev;
+	if (pNode == m_pFirst) {
+		m_pFirst = m_pFirst->next;
+	}
 	delete pNode;
 	m_numOfSize--;
+}
+
+void iList::push_front(int val) {
+	// 맨 뒤 삽입 후 m_pFirst를 한 칸 앞으로 당긴다.(원형 더블 링크드 리스트이기 때문)
+	push_back(val);
+	m_pFirst = m_pFirst->prev;
 }
 
 void iList::push_back(int val) {
@@ -61,15 +73,17 @@ int& iList::back() {
 	return m_pFirst->prev->data;
 }
 
-// TODO : push_front()
-// TODO : pop_front()
+int iList::pop_front() {
+	int val = m_pFirst->data;
+	del(m_pFirst);
+	return val;
+}
 
 int iList::pop_back() {
 	int val = m_pFirst->prev->data;
 	del(m_pFirst->prev);
 	return val;
 }
-
 
 int iList::remove(int val) {
 	Node* pNode = m_pFirst;
@@ -95,14 +109,19 @@ bool iList::empty() {
 
 void print_list(istd::iList *pList) {
 	while (!pList->empty()) {
-		std::cout << pList->pop_back() << "\n";
+		std::cout << pList->pop_front() << "\n";
 	}
 }
 
 int main() {
 	
-	istd::iList l;
+	istd::iList l(3,0);
 
+	l.remove(1);
+	if (l.empty()) {
+		cout << "empty\n";
+	}
+	print_list(&l);
 
 	return 0;
 }

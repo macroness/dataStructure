@@ -5,6 +5,7 @@
 
 namespace istd {
 
+// 원형 더블 연결 리스트
 class iList {
 private:
 	class Node { // list를 구성하는 각 Node.
@@ -26,10 +27,13 @@ public:
 	 */
 	iList(int size = 0, int initValue = 0);
 
-
 	~iList();
 
-	// TODO : push_front()
+	/*
+	 * 맨 뒤 삽입
+	 */
+	void push_front(int val);
+
 	/*
 	 * 맨 뒤 삽입
 	 */
@@ -45,7 +49,11 @@ public:
 	*/
 	int& back();
 
-	// TODO : pop_front()
+	/*
+	 * 맨 앞 가져오기
+	 */
+	int pop_front();
+
 	/*
 	 * 맨 뒤 가져오기
 	 */
