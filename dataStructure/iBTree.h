@@ -9,36 +9,44 @@ private:
 	class Node {
 	public:
 		int data; // data value
-		Node *l // left leaf
-		Node *r // right leaf
+		Node *l; // left leaf
+		Node *r; // right leaf
 	};
 
 	/*
-	 * val 값을 가진 Node를 반환한다 (없는경우 NULL)
+	 * 새 노드 생성해서 반환
 	 */
-	Node* search_node(const int val);
+
+	/*
+	 * 새 노드 삽입 (같은 값이 있을 경우 false 반환)
+	 */
+	bool insertNode(Node* pNode, const int& val);
 public:
+
 	iBTree();
+
+	iBTree(const int& val);
 
 	~iBTree();
 
 	/*
 	 * val이 존재하는지 검색
 	 */
-	bool exist(const int val);
+	bool exist(const int& val);
 
 	/*
-	 * val 삽입 (같은 값이 있을경우 false 반환)
+	 * val 삽입 (같은 값이 있을 경우 false 반환)
 	 */
-	bool insert(const int val);
+	bool insert(const int& val);
 
 	/*
 	 * val 삭제 (값이 없을 경우 false 반환)
 	 */
-	bool del(const int val);
+	bool del(const int& val);
 
 private:
 	Node *m_pRoot; // root node
 
 };
-
+} // namespace istd
+#endif
