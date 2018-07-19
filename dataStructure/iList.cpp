@@ -8,7 +8,6 @@ namespace istd {
 iList::iList(int size, int initValue) {
 	for (int i = 0; i < size; ++i) {
 		push_back(i);
-		push_back(i);
 	}
 }
 
@@ -106,22 +105,3 @@ bool iList::empty() {
 }
 
 } // namespace istd
-
-void print_list(istd::iList *pList) {
-	while (!pList->empty()) {
-		std::cout << pList->pop_front() << "\n";
-	}
-}
-
-int main() {
-	
-	istd::iList l(3,0);
-
-	l.remove(1);
-	if (l.empty()) {
-		cout << "empty\n";
-	}
-	print_list(&l);
-
-	return 0;
-}
