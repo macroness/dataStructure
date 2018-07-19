@@ -16,6 +16,7 @@ private:
 	/*
 	 * 새 노드 생성해서 반환
 	 */
+	Node* createNewNode(const int& val);
 
 	/*
 	 * 새 노드 삽입 (같은 값이 있을 경우 false 반환)
