@@ -17,8 +17,6 @@ iBTree::Node* iBTree::createNewNode(const int& val) {
 }
 
 bool iBTree::insertNode(Node *pNode, const int& val) {
-	// 같은 값이 있는 경우 실패
-	if (pNode->data == val) return false;
 
 	// 큰 경우 오른쪽
 	if (pNode->data < val) {
@@ -26,9 +24,8 @@ bool iBTree::insertNode(Node *pNode, const int& val) {
 			pNode->r = createNewNode(val);
 			return true;
 		}
-		else {
-			return insertNode(pNode->r, val);
-		}
+
+		return insertNode(pNode->r, val);
 	}
 
 	// 작은 경우 왼쪽
@@ -37,11 +34,32 @@ bool iBTree::insertNode(Node *pNode, const int& val) {
 			pNode->l = createNewNode(val);
 			return true;
 		}
-		else {
-			return insertNode(pNode->l, val);
-		}
+		
+		return insertNode(pNode->l, val);
 	}
 
+	// 같은 값이 있는 경우 실패
+	return false;
+}
+
+iBTree::Node* iBTree::searchNode(Node* pNode, const int& val) {
+
+	// 큰 경우 오른쪽
+	if (pNode->data < val) {
+		if (pNode->r == NULL) return NULL;
+
+		return searchNode(pNode->r, val);
+	}
+
+	// 작은 경우 왼쪽
+	if (pNode->data > val) {
+		if (pNode->l == NULL) return NULL;
+
+		return searchNode(pNode->l, val);
+	}
+
+	// 같은 값인 경우 노드 반환
+	return pNode;
 }
 
 bool iBTree::insert(const int& val) {

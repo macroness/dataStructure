@@ -22,6 +22,11 @@ private:
 	 * 새 노드 삽입 (같은 값이 있을 경우 false 반환)
 	 */
 	bool insertNode(Node* pNode, const int& val);
+
+	/*
+	 * val 값인 노드 검색(값이 없을 경우 NULL 반환)
+	 */
+	Node* searchNode(Node* pNode, const int& val);
 public:
 
 	iBTree();
