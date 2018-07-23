@@ -24,9 +24,10 @@ private:
 	bool insertNode(Node* pNode, const int& val);
 
 	/*
-	 * val 값인 노드 검색(값이 없을 경우 NULL 반환)
+	 * val 이 tree에 없는 경우 : insert할 위치의 부모노드 반환
+	 * val 이 tree에 있는 경우 : 해당 val값을 data로 가진 노드의 부모노드 반환 (root에 data가 val일 경우 NULL 반환)
 	 */
-	Node* searchNode(Node* pNode, const int& val);
+	Node* searchNodeParent(Node* pNode, const int& val);
 public:
 
 	iBTree();
