@@ -63,7 +63,7 @@ iBTree::Node* iBTree::searchNodeParent(Node* pNode, const int& val) {
 bool iBTree::exist(const int& val) {
 	const Node *pNode = searchNodeParent(m_pRoot, val);
 
-	return pNode == NULL || (pNode->l != NULL && pNode->r != NULL);
+	return pNode == NULL || pNode->l->data == val || pNode->r->data == val;
 }
 
 bool iBTree::insert(const int& val) {
@@ -97,8 +97,8 @@ bool iBTree::insert(const int& val) {
 
 bool iBTree::del(const int& val) {
 	Node *pDelNode = searchNodeParent(m_pRoot, val);
-	if (pDelNode)
-		delete pDelNode;
+
+	
 
 }
 
