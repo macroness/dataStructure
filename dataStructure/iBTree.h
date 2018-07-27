@@ -36,6 +36,16 @@ private:
 	Node* getLeftLarge(Node* pNode);
 
 	/*
+	 * 자식노드 수 반환
+	 */
+	const int8_t getChildNum(const Node* pNode);
+
+	/*
+	 * pParent의 자식중 val이 같은 쪽 자식 pNode로 변경
+	 */
+	void setChild(Node* pParent, Node* pNode, const int val);
+
+	/*
 	 * 해당 노드 삭제
 	 */
 	void deleteNode(Node* pNode);
