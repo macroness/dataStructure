@@ -24,7 +24,7 @@ void initBtree(iBTree* pTree){
 	pTree->insert(9);
 }
 
-int main() {
+void testBTree() {
 	iBTree tree;
 	initBtree(&tree);
 	tree.inOrder();
@@ -38,6 +38,10 @@ int main() {
 	tree.preOrder();
 	cout << "\n";
 	tree.postOrder();
+}
+
+int main() {
+	
 
 	return 0;
 }
