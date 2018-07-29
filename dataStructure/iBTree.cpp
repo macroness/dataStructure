@@ -2,8 +2,8 @@
 #include <iostream>
 
 using namespace std;
-using namespace istd;
-//namespace istd {
+
+namespace istd {
 iBTree::iBTree() : m_pRoot(NULL) {}
 
 iBTree::iBTree(const int& val) {
@@ -186,4 +186,4 @@ void iBTree::postOrder() {
 	postOrderPrint(m_pRoot);
 }
 
-//} // namespace istd
+} // namespace istd
