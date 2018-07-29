@@ -18,7 +18,7 @@ static void _swap(int *x, int *y) {
 int iPQueue::getMinChildIndex(const int child1, const int child2) {
 	if (child2 >= size()) return child1;
 
-	return child2 < child1 ? child2 : child1;
+	return m_heap[child2] < m_heap[child1] ? child2 : child1;
 }
 
 void iPQueue::push(const int val) {
@@ -29,7 +29,7 @@ void iPQueue::push(const int val) {
 	if (i == 0) return;
 
 	int parent = (i - 1) / 2;
-	while ((i != 0) || (m_heap[parent] >= m_heap[i])) {
+	while ((i != 0) && (m_heap[parent] >= m_heap[i])) {
 		_swap(&m_heap[i], &m_heap[parent]);
 		i = parent;
 		parent = (i - 1) / 2;

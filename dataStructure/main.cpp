@@ -1,6 +1,7 @@
 #include <iostream>
 //#include "iList.h"
 #include "iBTree.h"
+#include "iPQueue.h"
 
 using namespace istd;
 using namespace std;
@@ -40,8 +41,37 @@ void testBTree() {
 	tree.postOrder();
 }
 
+void testPQueue() {
+	iPQueue q;
+
+	for (int i = 9; i > 0; --i) {
+		q.push(i);
+	}
+
+	while (!q.empty()) {
+		cout << q.top() << " ";
+		q.pop();
+	}
+	cout << "\n";
+
+	// 아무일도 일어나지 않음
+	q.pop();
+
+	// 중복 숫자 확인
+	for (int i = 9; i > 0; --i) {
+		q.push(i);
+		q.push(i);
+	}
+
+	while (!q.empty()) {
+		cout << q.top() << " ";
+		q.pop();
+	}
+	cout << "\n";
+}
+
 int main() {
-	
+	testPQueue();
 
 	return 0;
 }
