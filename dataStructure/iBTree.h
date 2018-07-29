@@ -38,7 +38,7 @@ private:
 	/*
 	 * 자식노드 수 반환
 	 */
-	const int8_t getChildNum(const Node* pNode);
+	const char getChildNum(const Node* pNode);
 
 	/*
 	 * pParent의 자식중 val이 같은 쪽 자식 pNode로 변경
@@ -49,6 +49,24 @@ private:
 	 * 해당 노드 삭제
 	 */
 	void deleteNode(Node* pNode);
+
+	/*
+	 * 전위순회 출력
+	 */
+	void preOrderPrint(Node *pNode);
+
+	/*
+	 * 중위순회 출력
+	 */
+	void inOrderPrint(Node *pNode);
+
+	/*
+	 * 후위순회 출력
+	 */
+	void postOrderPrint(Node *pNode);
+
+
+
 public:
 
 	iBTree();
@@ -71,6 +89,21 @@ public:
 	 * val 삭제 (값이 없을 경우 false 반환)
 	 */
 	bool del(const int& val);
+
+	/*
+	 * 전위순회 출력
+	 */
+	void preOrder();
+
+	/*
+	 * 중위순회 출력
+	 */
+	void inOrder();
+
+	/*
+	 * 후위순회 출력
+	 */
+	void postOrder();
 
 private:
 	Node *m_pRoot; // root node

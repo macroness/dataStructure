@@ -10,6 +10,12 @@ iBTree::iBTree(const int& val) {
 	insert(val);
 }
 
+iBTree::~iBTree(){
+	while (m_pRoot != NULL) {
+		deleteNode(m_pRoot);
+	}
+}
+
 iBTree::Node* iBTree::createNewNode(const int& val) {
 	Node *pNew = new Node();
 	pNew->data = val;
@@ -70,7 +76,7 @@ iBTree::Node* iBTree::getLeftLarge(Node* pNode) {
 	return pRet;
 }
 
-const int8_t iBTree::getChildNum(const Node* pNode) {
+const char iBTree::getChildNum(const Node* pNode) {
 	if (pNode->l != NULL && pNode->r != NULL) return 2;
 	if (pNode->l != NULL || pNode->r != NULL) return 1;
 	return 0;
@@ -114,7 +120,26 @@ void iBTree::deleteNode(Node* pNode) {
 
 	// 자식이 둘인 경우
 	Node* pChild = getLeftLarge(pNode);
+	pNode->data = pChild->data;
+	deleteNode(pChild);
+}
 
+void iBTree::preOrderPrint(Node *pNode) {
+	cout << pNode->data << " ";
+	preOrderPrint(pNode->l);
+	preOrderPrint(pNode->r);
+}
+
+void iBTree::inOrderPrint(Node *pNode) {
+	inOrderPrint(pNode->l);
+	cout << pNode->data << " ";
+	inOrderPrint(pNode->r);
+}
+
+void iBTree::postOrderPrint(Node *pNode) {
+	postOrderPrint(pNode->l);
+	postOrderPrint(pNode->r);
+	cout << pNode->data << " ";
 }
 
 bool iBTree::exist(const int& val) {
@@ -155,8 +180,24 @@ bool iBTree::insert(const int& val) {
 bool iBTree::del(const int& val) {
 	Node *pDelNode = searchNodeParent(m_pRoot, val);
 
-	
+	if(pDelNode){
+		deleteNode(pDelNode);
+		return true;
+	}
 
+	return false;
+}
+
+void iBTree::preOrder() {
+	preOrderPrint(m_pRoot);
+}
+
+void iBTree::inOrder() {
+	inOrderPrint(m_pRoot);
+}
+
+void iBTree::postOrder() {
+	postOrderPrint(m_pRoot);
 }
 
 //} // namespace istd
