@@ -1,6 +1,6 @@
 //#include <stdio.h>
-#ifndef _iList_H_
-#define _iList_H_
+#ifndef _ILIST_H_
+#define _ILIST_H_
 
 
 namespace istd {

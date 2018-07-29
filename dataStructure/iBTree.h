@@ -1,5 +1,5 @@
-#ifndef _iBTree_H_
-#define _iBTree_H_
+#ifndef _IBTREE_H_
+#define _IBTREE_H_
 
 namespace istd {
 
@@ -11,6 +11,7 @@ private:
 		int data; // data value
 		Node *l; // left leaf
 		Node *r; // right leaf
+		Node *parent; // parent node
 	};
 
 	/*
@@ -24,11 +25,9 @@ private:
 	bool insertNode(Node* pNode, const int& val);
 
 	/*
-	 * val 이 tree에 없는 경우 : insert할 위치의 부모노드 반환
-	 * val 이 tree에 있는 경우 : 해당 val값을 data로 가진 노드의 부모노드 반환 (root에 data가 val일 경우 NULL 반환)
-	 * val 이 root에 있는 경우 : NULL 반환
+	 * val 값을 가진 노드 반환
 	 */
-	Node* searchNodeParent(Node* pNode, const int& val);
+	Node* searchNode(Node* pNode, const int& val);
 
 	/*
 	 * 왼쪽 노드 중 가장 큰 Node를 반환
@@ -46,9 +45,9 @@ private:
 	void setChild(Node* pParent, Node* pNode, const int val);
 
 	/*
-	 * 해당 노드 삭제
+	 * 해당 노드 삭제 (삭제할 노드없으면 false)
 	 */
-	void deleteNode(Node* pNode);
+	bool deleteNode(Node* pNode);
 
 	/*
 	 * 전위순회 출력

@@ -24,10 +24,18 @@ iBTree::Node* iBTree::createNewNode(const int& val) {
 
 bool iBTree::insertNode(Node *pNode, const int& val) {
 
+	// empty tree
+	if (pNode == NULL) {
+		m_pRoot = createNewNode(val);
+		m_pRoot->parent = NULL;
+		return true;
+	}
+
 	// 큰 경우 오른쪽
 	if (pNode->data < val) {
 		if (pNode->r == NULL) {
 			pNode->r = createNewNode(val);
+			pNode->r->parent = pNode;
 			return true;
 		}
 
@@ -38,6 +46,7 @@ bool iBTree::insertNode(Node *pNode, const int& val) {
 	if (pNode->data > val) {
 		if (pNode->l == NULL) {
 			pNode->l = createNewNode(val);
+			pNode->l->parent = pNode;
 			return true;
 		}
 		
@@ -48,28 +57,23 @@ bool iBTree::insertNode(Node *pNode, const int& val) {
 	return false;
 }
 
-iBTree::Node* iBTree::searchNodeParent(Node* pNode, const int& val) {
-	// root 처리
-	if (pNode == m_pRoot && pNode->data == val) {
-		return NULL;
+iBTree::Node* iBTree::searchNode(Node* pNode, const int& val) {
+
+	if (pNode == NULL || pNode->data == val) {
+		return pNode;
 	}
-	// 큰 경우 오른쪽
+
 	if (pNode->data < val) {
-		if (pNode->r == NULL || pNode->r->data == val) return pNode;
-
-		return searchNodeParent(pNode->r, val);
+		return searchNode(pNode->r, val);
 	}
 
-	// 작은 경우 왼쪽
-	if (pNode->l == NULL || pNode->l->data == val) return pNode;
-
-	return searchNodeParent(pNode->l, val);
+	return searchNode(pNode->l, val);
 }
 
 iBTree::Node* iBTree::getLeftLarge(Node* pNode) {
 	Node* pRet = pNode->l;
 
-	while (pRet->r == NULL) {
+	while (pRet->r != NULL) {
 		pRet = pRet->r;
 	}
 
@@ -86,18 +90,27 @@ void iBTree::setChild(Node* pParent, Node* pNode, const int val) {
 	// NULL인경우는 pNode가 root인 경우
 	if (pParent == NULL) {
 		m_pRoot = pNode;
+		if(m_pRoot)
+			m_pRoot->parent = NULL;
 		return;
 	}
 
 	if (pParent->r->data == val) {
 		pParent->r = pNode;
+		if(pNode)
+			pNode->parent = pParent;
+		return;
 	}
 
 	pParent->l = pNode;
+	if (pNode)
+		pNode->parent = pParent;
 }
 
-void iBTree::deleteNode(Node* pNode) {
-	Node* pParent = searchNodeParent(m_pRoot, pNode->data);
+bool iBTree::deleteNode(Node* pNode) {
+	if (pNode == NULL) return false;
+
+	Node* pParent = pNode->parent;
 	const int val = pNode->data;
 
 	const int8_t childNum = getChildNum(pNode);
@@ -106,7 +119,7 @@ void iBTree::deleteNode(Node* pNode) {
 		setChild(pParent, NULL, val);
 		delete pNode;
 
-		return;
+		return true;
 	}
 
 	// 자식이 하나인 경우
@@ -115,77 +128,50 @@ void iBTree::deleteNode(Node* pNode) {
 		setChild(pParent, pChild, val);
 		delete pNode;
 
-		return;
+		return true;
 	}
 
 	// 자식이 둘인 경우
 	Node* pChild = getLeftLarge(pNode);
 	pNode->data = pChild->data;
 	deleteNode(pChild);
+
+	return true;
 }
 
 void iBTree::preOrderPrint(Node *pNode) {
+	if (pNode == NULL) return;
 	cout << pNode->data << " ";
 	preOrderPrint(pNode->l);
 	preOrderPrint(pNode->r);
 }
 
 void iBTree::inOrderPrint(Node *pNode) {
+	if (pNode == NULL) return;
 	inOrderPrint(pNode->l);
 	cout << pNode->data << " ";
 	inOrderPrint(pNode->r);
 }
 
 void iBTree::postOrderPrint(Node *pNode) {
+	if (pNode == NULL) return;
 	postOrderPrint(pNode->l);
 	postOrderPrint(pNode->r);
 	cout << pNode->data << " ";
 }
 
 bool iBTree::exist(const int& val) {
-	const Node *pNode = searchNodeParent(m_pRoot, val);
+	const Node *pNode = searchNode(m_pRoot, val);
 
-	return pNode == NULL || pNode->l->data == val || pNode->r->data == val;
+	return pNode != NULL;
 }
 
 bool iBTree::insert(const int& val) {
-	// empty tree
-	if (m_pRoot == NULL) {
-		m_pRoot = createNewNode(val);
-		return true;
-	}
-
-	Node *pNode = searchNodeParent(m_pRoot, val);
-
-	if (pNode == NULL) {
-		return false;
-	}
-
-	if (pNode->data > val) {
-		if (pNode->r == NULL) {
-			pNode->r = createNewNode(val);
-			return true;
-		}
-	}
-	else {
-		if (pNode->l == NULL) {
-			pNode->l = createNewNode(val);
-			return true;
-		}
-	}
-
-	return false;
+	return insertNode(m_pRoot, val);
 }
 
 bool iBTree::del(const int& val) {
-	Node *pDelNode = searchNodeParent(m_pRoot, val);
-
-	if(pDelNode){
-		deleteNode(pDelNode);
-		return true;
-	}
-
-	return false;
+	return deleteNode(searchNode(m_pRoot, val));
 }
 
 void iBTree::preOrder() {

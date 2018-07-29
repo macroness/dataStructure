@@ -3,6 +3,7 @@
 #include "iBTree.h"
 
 using namespace istd;
+using namespace std;
 /*
 void print_list(iList *pList) {
 	while (!pList->empty()) {
@@ -27,6 +28,16 @@ int main() {
 	iBTree tree;
 	initBtree(&tree);
 	tree.inOrder();
+	cout << "\n";
+	cout << tree.exist(3) << "\n";
+	cout << tree.insert(3) << "\n";
+
+	cout << tree.del(5) << "\n";
+	tree.inOrder();
+	cout << "\n";
+	tree.preOrder();
+	cout << "\n";
+	tree.postOrder();
 
 	return 0;
 }
