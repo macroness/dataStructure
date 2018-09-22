@@ -5,7 +5,7 @@ namespace istd {
 
 // Binary Tree 
 class iBTree {
-private:
+protected:
 	class Node {
 	public:
 		int data; // data value
@@ -14,6 +14,7 @@ private:
 		Node *parent; // parent node
 	};
 
+private:
 	/*
 	 * 새 노드 생성해서 반환
 	 */
@@ -104,7 +105,7 @@ public:
 	 */
 	void postOrder();
 
-private:
+protected:
 	Node *m_pRoot; // root node
 
 };
