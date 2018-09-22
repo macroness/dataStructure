@@ -11,7 +11,7 @@ private:
 	/*
 	 * 해당 노드를 루트로하는 트리의 높이를 반환
 	 */
-	int height(const Node& root);
+	int height(const Node* root);
 
 	/*
 	 * balance factor(균형 인수 : 높이차이)를 반환
