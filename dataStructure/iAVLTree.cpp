@@ -50,7 +50,23 @@ iAVLTree::Node* iAVLTree::rl(Node *node) {
 	return rr(node);
 }
 
+void iAVLTree::balanceTree(Node *node) {
+	const int bf = getBF(*node);
 
+	if (bf > 1) {
+		if (getBF(*node->l) > 0) {
+			node = ll(node);
+		}
+		node = lr(node);
+	}
+	else if (bf < -1) {
+		if (getBF(*node->l) > 0) {
+			node = rl(node);
+		}
+		node = rr(node);
+	}
+	return;
+}
 
 
 
