@@ -5,20 +5,18 @@
 
 namespace istd {
 
-int iAVLTree::height(const Node* root) {
+int iAVLTree::height(const Node* node) {
 
-	if (root == NULL) {
+	if (node == NULL) {
 		return 0;
 	}
 
-	const int left = height(root->l);
-	const int right = height(root->r);
-	const int maxHeight = std::max(left, right);
-	
-	return maxHeight + 1;
+	return std::max(height(node->l), height(node->r)) + 1;
 }
 
-
+int iAVLTree::getBF(const Node& node){
+	return height(node.l) - height(node.r);
+}
 
 
 
