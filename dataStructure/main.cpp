@@ -2,6 +2,7 @@
 //#include "iList.h"
 #include "iBTree.h"
 #include "iPQueue.h"
+#include "iAVLTree.h"
 
 using namespace istd;
 using namespace std;
@@ -68,6 +69,11 @@ void testPQueue() {
 		q.pop();
 	}
 	cout << "\n";
+}
+
+void testAVLTree() {
+
+	iAVLTree t;
 }
 
 int main() {

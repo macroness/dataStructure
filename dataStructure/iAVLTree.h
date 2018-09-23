@@ -49,7 +49,10 @@ private:
 
 
 public:
+
 	iAVLTree();
+	iAVLTree(const int& val);
+
 	~iAVLTree();
 
 	/*

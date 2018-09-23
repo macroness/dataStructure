@@ -14,16 +14,21 @@ protected:
 		Node *parent; // parent node
 	};
 
+	/*
+	 * 새 노드 삽입 (같은 값이 있을 경우 false 반환)
+	 */
+	bool insertNode(Node* pNode, const int& val);
+
+	/*
+	 * 트리를 예쁘게 프린트합니다.
+	 */
+	bool printTree(Node* pNode, const int& level);
+
 private:
 	/*
 	 * 새 노드 생성해서 반환
 	 */
 	Node* createNewNode(const int& val);
-
-	/*
-	 * 새 노드 삽입 (같은 값이 있을 경우 false 반환)
-	 */
-	bool insertNode(Node* pNode, const int& val);
 
 	/*
 	 * val 값을 가진 노드 반환
@@ -104,6 +109,11 @@ public:
 	 * 후위순회 출력
 	 */
 	void postOrder();
+
+	/*
+	* 트리를 예쁘게 프린트합니다.
+	*/
+	bool print();
 
 protected:
 	Node *m_pRoot; // root node

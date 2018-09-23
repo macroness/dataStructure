@@ -5,77 +5,83 @@
 
 namespace istd {
 
-int iAVLTree::height(const Node* node) {
+iAVLTree::iAVLTree() : iBTree(NULL) {}
 
-	if (node == NULL) {
+iAVLTree::iAVLTree(const int& val) : iBTree(val) {}
+
+iAVLTree::~iAVLTree() {
+}
+
+int iAVLTree::height(const Node* pNode) {
+
+	if (pNode == NULL) {
 		return 0;
 	}
 
-	return std::max(height(node->l), height(node->r)) + 1;
+	return std::max(height(pNode->l), height(pNode->r)) + 1;
 }
 
 int iAVLTree::getBF(const Node& node){
 	return height(node.l) - height(node.r);
 }
 
-iAVLTree::Node* iAVLTree::rr(Node *node) {
-	Node* tempNode = node->r;
-	node->r = tempNode->l;
-	tempNode->l = node;
+iAVLTree::Node* iAVLTree::rr(Node *pNode) {
+	Node* tempNode = pNode->r;
+	pNode->r = tempNode->l;
+	tempNode->l = pNode;
 
 	return tempNode;
 }
 
 
-iAVLTree::Node* iAVLTree::ll(Node *node) {
-	Node* tempNode = node->l;
-	node->l = tempNode->r;
-	tempNode->r = node;
+iAVLTree::Node* iAVLTree::ll(Node *pNode) {
+	Node* tempNode = pNode->l;
+	pNode->l = tempNode->r;
+	tempNode->r = pNode;
 
 	return tempNode;
 }
 
-iAVLTree::Node* iAVLTree::lr(Node *node) {
-	Node* tempNode = node->l;
-	node->l = rr(tempNode);
+iAVLTree::Node* iAVLTree::lr(Node *pNode) {
+	Node* tempNode = pNode->l;
+	pNode->l = rr(tempNode);
 
-	return ll(node);
+	return ll(pNode);
 }
 
 
-iAVLTree::Node* iAVLTree::rl(Node *node) {
-	Node* tempNode = node->r;
-	node->r = ll(tempNode);
+iAVLTree::Node* iAVLTree::rl(Node *pNode) {
+	Node* tempNode = pNode->r;
+	pNode->r = ll(tempNode);
 
-	return rr(node);
+	return rr(pNode);
 }
 
-void iAVLTree::balanceTree(Node *node) {
-	const int bf = getBF(*node);
+void iAVLTree::balanceTree(Node *pNode) {
+	const int bf = getBF(*pNode);
 
 	if (bf > 1) {
-		if (getBF(*node->l) > 0) {
-			node = ll(node);
+		if (getBF(*pNode->l) > 0) {
+			pNode = ll(pNode);
 		}
-		node = lr(node);
+		pNode = lr(pNode);
 	}
 	else if (bf < -1) {
-		if (getBF(*node->l) > 0) {
-			node = rl(node);
+		if (getBF(*pNode->l) > 0) {
+			pNode = rl(pNode);
 		}
-		node = rr(node);
+		pNode = rr(pNode);
 	}
 	return;
 }
 
+bool iAVLTree::insert(const int& val){
+	if (insertNode(m_pRoot, val)) {
+		balanceTree(m_pRoot);
+		return true;
+	}
 
-
-
-
-
-
-
-
-
+	return false;
+}
 
 } // namespace istd
