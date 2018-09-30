@@ -20,7 +20,7 @@ class iHuffmanCoding {
 		Node *r;
 	};
 
-	Node* createNewNode(const int f, const char ch);
+	Node* createNewNode(const int f, const char ch = NULL);
 public:
 	iHuffmanCoding();
 

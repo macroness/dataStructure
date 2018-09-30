@@ -41,6 +41,27 @@ string iHuffmanCoding::doEncoding(const string str) {
 		pQ.push(createNewNode(it->second, it->first));
 	}
 
+	// 허프만트리 만들기
+	while (true) {
+		Node* node1 = pQ.top();
+		pQ.pop();
+		Node* node2 = pQ.top();
+		pQ.pop();
+
+		Node* parent = createNewNode(node1->freq + node2->freq);
+		parent->l = node1;
+		parent->r = node2;
+
+		if (pQ.empty()) {
+			m_root = parent;
+			break;
+		}
+
+		pQ.push(parent);
+	}
+
+
+
 
 
 	return "";
