@@ -80,7 +80,7 @@ void testAVLTree() {
 int main() {
 	iHuffmanCoding h;
 
-	h.doEncoding("aaabbcdddd");
+	cout << h.doEncoding("aaabbcdddd").c_str() << "\n";
 
 	return 0;
 }

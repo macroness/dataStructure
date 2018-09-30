@@ -1,6 +1,8 @@
 #ifndef _IHUFFMAN_CODING_H_
 #define _IHUFFMAN_CODING_H_
 
+#include <map>
+
 namespace istd {
 
 class iHuffmanCoding {
@@ -21,6 +23,11 @@ class iHuffmanCoding {
 	};
 
 	Node* createNewNode(const int f, const char ch = NULL);
+
+	void bitcodeMapping(std::map<char, std::string>& map, Node* pNode, std::string bitcode);
+
+	const std::string bitEncoding(const std::map<char, std::string>& map, const std::string& str);
+
 public:
 	iHuffmanCoding();
 
@@ -31,7 +38,7 @@ public:
 	std::string doDecoding(const std::string str);
 
 private:
-	Node* m_root;
+	Node* m_pRoot;
 
 };
 

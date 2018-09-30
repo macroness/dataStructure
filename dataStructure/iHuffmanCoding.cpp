@@ -1,5 +1,4 @@
 #include <queue>
-#include <map>
 #include <iostream>
 
 #include "iHuffmanCoding.h"
@@ -18,6 +17,24 @@ iHuffmanCoding::Node* iHuffmanCoding::createNewNode(const int f, const char ch) 
 	newNode->c = ch;
 
 	return newNode;
+}
+
+void iHuffmanCoding::bitcodeMapping(map<char, string>& map, iHuffmanCoding::Node* pNode, string bitcode) {
+	if (pNode->c != NULL) {
+		map[pNode->c] = bitcode;
+		return;
+	}
+	bitcodeMapping(map, pNode->l, bitcode + "0");
+	bitcodeMapping(map, pNode->r, bitcode + "1");
+}
+
+const string iHuffmanCoding::bitEncoding(const map<char, std::string>& map, const string& str) {
+	string ret;
+	for (string::const_iterator it = str.begin(); it != str.end(); ++it) {
+		ret += map.find(*it)->second;
+	}
+
+	return ret;
 }
 
 string iHuffmanCoding::doEncoding(const string str) {
@@ -53,18 +70,18 @@ string iHuffmanCoding::doEncoding(const string str) {
 		parent->r = node2;
 
 		if (pQ.empty()) {
-			m_root = parent;
+			m_pRoot = parent;
 			break;
 		}
 
 		pQ.push(parent);
 	}
 
+	// 각 글자별로 비트코드 매핑
+	map<char, string> bitcodeMap;
+	bitcodeMapping(bitcodeMap, m_pRoot, "");
 
-
-
-
-	return "";
+	return bitEncoding(bitcodeMap, str);
 }
 
 
