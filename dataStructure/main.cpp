@@ -3,6 +3,7 @@
 #include "iBTree.h"
 #include "iPQueue.h"
 #include "iAVLTree.h"
+#include "iHuffmanCoding.h"
 
 using namespace istd;
 using namespace std;
@@ -77,7 +78,9 @@ void testAVLTree() {
 }
 
 int main() {
-	testPQueue();
+	iHuffmanCoding h;
+
+	h.doEncoding("aaabbcdddd");
 
 	return 0;
 }

@@ -118,6 +118,7 @@
   <ItemGroup>
     <ClCompile Include="iAVLTree.cpp" />
     <ClCompile Include="iBTree.cpp" />
+    <ClCompile Include="iHuffmanCoding.cpp" />
     <ClCompile Include="iPQueue.cpp" />
     <ClCompile Include="iList.cpp" />
     <ClCompile Include="main.cpp" />
@@ -125,6 +126,7 @@
   <ItemGroup>
     <ClInclude Include="iAVLTree.h" />
     <ClInclude Include="iBTree.h" />
+    <ClInclude Include="iHuffmanCoding.h" />
     <ClInclude Include="iPQueue.h" />
     <ClInclude Include="iList.h" />
   </ItemGroup>

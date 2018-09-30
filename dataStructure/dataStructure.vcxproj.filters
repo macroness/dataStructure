@@ -30,6 +30,9 @@
     <ClCompile Include="iAVLTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="iHuffmanCoding.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="iList.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="iAVLTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="iHuffmanCoding.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

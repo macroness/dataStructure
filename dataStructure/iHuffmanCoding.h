@@ -5,17 +5,22 @@ namespace istd {
 
 class iHuffmanCoding {
 
-	class Node {
-	public:
-		Node() : preq(0), c(NULL), l(NULL), r(NULL) {}
+	struct Node {
+		Node() : freq(0), c(NULL), l(NULL), r(NULL) {}
 
-	private:
-		int preq;
+		struct compareNode {
+			bool operator()(Node* t, Node* u) {
+				return t->freq > u->freq;
+			};
+		};
+
+		int freq;
 		char c;
 		Node *l;
 		Node *r;
 	};
 
+	Node* createNewNode(const int f, const char ch);
 public:
 	iHuffmanCoding();
 
@@ -26,7 +31,7 @@ public:
 	std::string doDecoding(const std::string str);
 
 private:
-
+	Node* m_root;
 
 };
 
