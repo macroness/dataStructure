@@ -9,7 +9,9 @@ namespace istd {
 
 iHuffmanCoding::iHuffmanCoding() {}
 
-iHuffmanCoding::~iHuffmanCoding() {}
+iHuffmanCoding::~iHuffmanCoding() {
+	// TODO : node delete ÇØ¾ßµÊ
+}
 
 iHuffmanCoding::Node* iHuffmanCoding::createNewNode(const int f, const char ch) {
 	Node* newNode = new Node();
@@ -82,6 +84,26 @@ string iHuffmanCoding::doEncoding(const string str) {
 	bitcodeMapping(bitcodeMap, m_pRoot, "");
 
 	return bitEncoding(bitcodeMap, str);
+}
+
+string iHuffmanCoding::doDecoding(const string str) {
+	string ret;
+	Node* curNode = m_pRoot;
+	for (string::const_iterator it = str.begin(); it != str.end(); ++it) {
+		if (*it == '0') {
+			curNode = curNode->l;
+		}
+		else {
+			curNode = curNode->r;
+		}
+
+		if (curNode->c != NULL) {
+			ret += curNode->c;
+			curNode = m_pRoot;
+		}
+	}
+
+	return ret;
 }
 
 

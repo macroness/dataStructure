@@ -79,8 +79,9 @@ void testAVLTree() {
 
 int main() {
 	iHuffmanCoding h;
+	string str = h.doEncoding("aaabbcdddd");
+	cout << str.c_str() << "\n";
 
-	cout << h.doEncoding("aaabbcdddd").c_str() << "\n";
-
+	cout << h.doDecoding(str).c_str() << "\n";
 	return 0;
 }

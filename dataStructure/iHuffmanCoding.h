@@ -27,12 +27,12 @@ class iHuffmanCoding {
 	void bitcodeMapping(std::map<char, std::string>& map, Node* pNode, std::string bitcode);
 
 	const std::string bitEncoding(const std::map<char, std::string>& map, const std::string& str);
-
 public:
 	iHuffmanCoding();
 
 	~iHuffmanCoding();
 
+	// TODO : doEncoding() 은 솔직히 너무 막짜서 리팩토링이 필요함...함수를 좀 나눠야함.
 	std::string doEncoding(const std::string str);
 
 	std::string doDecoding(const std::string str);
