@@ -1,4 +1,3 @@
-#include <queue>
 #include <iostream>
 
 #include "iHuffmanCoding.h"
@@ -48,10 +47,7 @@ void iHuffmanCoding::deleteNode(Node* pNode) {
 	delete pNode;
 }
 
-string iHuffmanCoding::doEncoding(const string str) {
-
-	map<char, int> freqMap;
-
+static void checkFreq(map<char, int>& freqMap, const string& str) {
 	// 빈도수 체크
 	for (string::const_iterator it = str.begin(); it != str.end(); ++it) {
 		map<char, int>::iterator mapItr = freqMap.find(*it);
@@ -62,14 +58,9 @@ string iHuffmanCoding::doEncoding(const string str) {
 			freqMap[*it] = 1;
 		}
 	}
+}
 
-	priority_queue<Node*, vector<Node*>, Node::compareNode> pQ;
-	// 우선순위 큐에 전부 집어넣기
-	for (map<char, int>::iterator it = freqMap.begin(); it != freqMap.end(); ++it) {
-		pQ.push(createNewNode(it->second, it->first));
-	}
-
-	// 허프만트리 만들기
+void iHuffmanCoding::createHuffmanTree(priQue &pQ) {
 	while (true) {
 		Node* node1 = pQ.top();
 		pQ.pop();
@@ -87,6 +78,22 @@ string iHuffmanCoding::doEncoding(const string str) {
 
 		pQ.push(parent);
 	}
+}
+
+string iHuffmanCoding::doEncoding(const string str) {
+
+	map<char, int> freqMap;
+
+	checkFreq(freqMap, str);
+
+	priQue pQ;
+	// 우선순위 큐에 전부 집어넣기
+	for (map<char, int>::iterator it = freqMap.begin(); it != freqMap.end(); ++it) {
+		pQ.push(createNewNode(it->second, it->first));
+	}
+
+	// 허프만트리 만들기
+	createHuffmanTree(pQ);
 
 	// 각 글자별로 비트코드 매핑
 	map<char, string> bitcodeMap;

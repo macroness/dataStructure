@@ -2,6 +2,7 @@
 #define _IHUFFMAN_CODING_H_
 
 #include <map>
+#include <queue>
 
 namespace istd {
 
@@ -30,6 +31,10 @@ class iHuffmanCoding {
 	const std::string bitEncoding(const std::map<char, std::string>& map, const std::string& str);
 
 	void deleteNode(Node* pNode);
+
+	typedef priority_queue<Node*, vector<Node*>, Node::compareNode> priQue;
+
+	void createHuffmanTree(priQue& pQ);
 public:
 	iHuffmanCoding();
 
