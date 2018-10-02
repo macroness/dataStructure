@@ -60,7 +60,7 @@ static void checkFreq(map<char, int>& freqMap, const string& str) {
 	}
 }
 
-void iHuffmanCoding::createHuffmanTree(priQue &pQ) {
+void iHuffmanCoding::createHuffmanTree(priority_queue<Node*, vector<Node*>, Node::compareNode> &pQ) {
 	while (true) {
 		Node* node1 = pQ.top();
 		pQ.pop();
@@ -86,7 +86,7 @@ string iHuffmanCoding::doEncoding(const string str) {
 
 	checkFreq(freqMap, str);
 
-	priQue pQ;
+	priority_queue<Node*, vector<Node*>, Node::compareNode> pQ;
 	// 우선순위 큐에 전부 집어넣기
 	for (map<char, int>::iterator it = freqMap.begin(); it != freqMap.end(); ++it) {
 		pQ.push(createNewNode(it->second, it->first));

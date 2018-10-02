@@ -31,10 +31,8 @@ class iHuffmanCoding {
 	const std::string bitEncoding(const std::map<char, std::string>& map, const std::string& str);
 
 	void deleteNode(Node* pNode);
-
-	typedef priority_queue<Node*, vector<Node*>, Node::compareNode> priQue;
-
-	void createHuffmanTree(priQue& pQ);
+	
+	void createHuffmanTree(priority_queue<Node*, vector<Node*>, Node::compareNode> &pQ);
 public:
 	iHuffmanCoding();
 
