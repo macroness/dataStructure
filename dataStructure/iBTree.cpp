@@ -139,21 +139,21 @@ bool iBTree::deleteNode(Node* pNode) {
 	return true;
 }
 
-void iBTree::preOrderPrint(Node *pNode) {
+void iBTree::preOrderPrint(const Node *pNode) {
 	if (pNode == NULL) return;
 	cout << pNode->data << " ";
 	preOrderPrint(pNode->l);
 	preOrderPrint(pNode->r);
 }
 
-void iBTree::inOrderPrint(Node *pNode) {
+void iBTree::inOrderPrint(const Node *pNode) {
 	if (pNode == NULL) return;
 	inOrderPrint(pNode->l);
 	cout << pNode->data << " ";
 	inOrderPrint(pNode->r);
 }
 
-void iBTree::postOrderPrint(Node *pNode) {
+void iBTree::postOrderPrint(const Node *pNode) {
 	if (pNode == NULL) return;
 	postOrderPrint(pNode->l);
 	postOrderPrint(pNode->r);

@@ -58,17 +58,17 @@ private:
 	/*
 	 * 전위순회 출력
 	 */
-	void preOrderPrint(Node *pNode);
+	void preOrderPrint(const Node *pNode);
 
 	/*
 	 * 중위순회 출력
 	 */
-	void inOrderPrint(Node *pNode);
+	void inOrderPrint(const Node *pNode);
 
 	/*
 	 * 후위순회 출력
 	 */
-	void postOrderPrint(Node *pNode);
+	void postOrderPrint(const Node *pNode);
 
 
 
