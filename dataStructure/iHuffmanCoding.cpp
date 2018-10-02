@@ -10,7 +10,7 @@ namespace istd {
 iHuffmanCoding::iHuffmanCoding() {}
 
 iHuffmanCoding::~iHuffmanCoding() {
-	// TODO : node delete ÇØ¾ßµÊ
+	clear();
 }
 
 iHuffmanCoding::Node* iHuffmanCoding::createNewNode(const int f, const char ch) {
@@ -21,7 +21,7 @@ iHuffmanCoding::Node* iHuffmanCoding::createNewNode(const int f, const char ch) 
 	return newNode;
 }
 
-void iHuffmanCoding::bitcodeMapping(map<char, string>& map, iHuffmanCoding::Node* pNode, string bitcode) {
+void iHuffmanCoding::bitcodeMapping(map<char, string>& map, Node* pNode, string bitcode) {
 	if (pNode->c != NULL) {
 		map[pNode->c] = bitcode;
 		return;
@@ -37,6 +37,15 @@ const string iHuffmanCoding::bitEncoding(const map<char, std::string>& map, cons
 	}
 
 	return ret;
+}
+
+void iHuffmanCoding::deleteNode(Node* pNode) {
+	if (pNode == NULL) {
+		return;
+	}
+	deleteNode(pNode->l);
+	deleteNode(pNode->r);
+	delete pNode;
 }
 
 string iHuffmanCoding::doEncoding(const string str) {
@@ -106,5 +115,7 @@ string iHuffmanCoding::doDecoding(const string str) {
 	return ret;
 }
 
-
+void iHuffmanCoding::clear() {
+	deleteNode(m_pRoot);
+}
 } // namespace istd
