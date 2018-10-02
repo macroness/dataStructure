@@ -77,11 +77,20 @@ void testAVLTree() {
 	iAVLTree t;
 }
 
-int main() {
+void testHuffman() {
 	iHuffmanCoding h;
-	string str = h.doEncoding("aaabbcdddd");
-	cout << str.c_str() << "\n";
+	const string inputStr = "asklfjlgajnbrel;jqt;;lasfjmasdf;aslvnzxnvm,asdjf;q1231414";
+	const string encodingStr = h.doEncoding(inputStr);
+	cout << encodingStr.c_str() << "\n";
 
-	cout << h.doDecoding(str).c_str() << "\n";
+	const string decodingStr = h.doDecoding(encodingStr).c_str();
+	cout << "decoding string : " << decodingStr.c_str() << "\n";
+	cout << "original string : " << inputStr.c_str() << "\n";
+
+	cout << inputStr.compare(decodingStr) << "\n";
+}
+
+int main() {
+	
 	return 0;
 }
