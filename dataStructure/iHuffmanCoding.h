@@ -32,7 +32,7 @@ class iHuffmanCoding {
 
 	void deleteNode(Node* pNode);
 	
-	void createHuffmanTree(priority_queue<Node*, vector<Node*>, Node::compareNode> &pQ);
+	void createHuffmanTree(priority_queue<Node*, vector<Node*>, Node::compareNode> *pQ);
 public:
 	iHuffmanCoding();
 

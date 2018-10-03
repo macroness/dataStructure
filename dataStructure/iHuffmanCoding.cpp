@@ -60,23 +60,23 @@ static void checkFreq(map<char, int>& freqMap, const string& str) {
 	}
 }
 
-void iHuffmanCoding::createHuffmanTree(priority_queue<Node*, vector<Node*>, Node::compareNode> &pQ) {
+void iHuffmanCoding::createHuffmanTree(priority_queue<Node*, vector<Node*>, Node::compareNode> *pQ) {
 	while (true) {
-		Node* node1 = pQ.top();
-		pQ.pop();
-		Node* node2 = pQ.top();
-		pQ.pop();
+		Node* node1 = pQ->top();
+		pQ->pop();
+		Node* node2 = pQ->top();
+		pQ->pop();
 
 		Node* parent = createNewNode(node1->freq + node2->freq);
 		parent->l = node1;
 		parent->r = node2;
 
-		if (pQ.empty()) {
+		if (pQ->empty()) {
 			m_pRoot = parent;
 			break;
 		}
 
-		pQ.push(parent);
+		pQ->push(parent);
 	}
 }
 
@@ -93,7 +93,7 @@ string iHuffmanCoding::doEncoding(const string str) {
 	}
 
 	// 허프만트리 만들기
-	createHuffmanTree(pQ);
+	createHuffmanTree(&pQ);
 
 	// 각 글자별로 비트코드 매핑
 	map<char, string> bitcodeMap;
