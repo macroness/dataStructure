@@ -91,6 +91,6 @@ void testHuffman() {
 }
 
 int main() {
-	
+	testHuffman();
 	return 0;
 }

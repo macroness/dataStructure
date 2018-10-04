@@ -11,16 +11,16 @@ class iHuffmanCoding {
 	struct Node {
 		Node() : freq(0), c(NULL), l(NULL), r(NULL) {}
 
-		struct compareNode {
-			bool operator()(Node* t, Node* u) {
-				return t->freq > u->freq;
-			};
-		};
-
 		int freq;
 		char c;
 		Node *l;
 		Node *r;
+	};
+
+	struct cmpNode {
+		bool operator()(Node* t, Node* u) {
+			return t->freq > u->freq;
+		};
 	};
 
 	Node* createNewNode(const int f, const char ch = NULL);
@@ -31,14 +31,11 @@ class iHuffmanCoding {
 	const std::string bitEncoding(const std::map<char, std::string>& map, const std::string& str);
 
 	void deleteNode(Node* pNode);
-	
-	void createHuffmanTree(priority_queue<Node*, vector<Node*>, Node::compareNode> *pQ);
 public:
 	iHuffmanCoding();
 
 	~iHuffmanCoding();
 
-	// TODO : doEncoding() 은 솔직히 너무 막짜서 리팩토링이 필요함...함수를 좀 나눠야함.
 	// 주어진 문자열을 허프만 알고리즘으로 압축.
 	std::string doEncoding(const std::string str);
 
