@@ -73,8 +73,7 @@ void testPQueue() {
 }
 
 void testAVLTree() {
-
-	iAVLTree t;
+	// TODO
 }
 
 void testHuffman() {
